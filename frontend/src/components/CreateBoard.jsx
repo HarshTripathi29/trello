@@ -1,6 +1,8 @@
 import React, {useState}from 'react'
+import axios from 'axios';
+import {image1} from '../assets/image1'
 
-const CreateBoard = () => {
+const CreateBoard = ({ onBoardCreated }) => {
 
     const[title, setTitle] = useState('');
 
@@ -8,10 +10,11 @@ const CreateBoard = () => {
         setTitle(e.target.value);
     }
 
-    const handleSubmit=()=>{
+    const handleSubmit=(e)=>{
         e.preventDefault();
         const newBoard = {title};
         const res = axios.post('http://localhost:5000/api/boards', newBoard);
+        onBoardCreated(res.data);
         setTitle('');
     }
 
