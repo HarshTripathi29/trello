@@ -37,13 +37,13 @@ router.get('/:id', async (req, res) => {
 
 // create a new board
 router.post('/', async function(req, res){
-    const {title} = req.body;
-    const board = new Board({title, lists:[]})
-    try{
-        const newBoard = await board.save();
+    try {
+        const { title, cover } = req.body;
+        const newBoard = new Board({ title, cover });
+        await newBoard.save();
         res.status(201).json(newBoard);
-    }catch(err){
-        res.status(400).json({message : err.message});
+    } catch (error) {
+        res.status(500).json({ message: 'Error creating board', error });
     }
 })
 
