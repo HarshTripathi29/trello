@@ -1,11 +1,6 @@
 import React, { useState } from 'react';
 import axios from 'axios';
 import './CreateBoardModal.css';
-import image1 from '../assets/image1.jpg'
-import image2 from '../assets/image2.jpg'
-import image3 from '../assets/image3.jpg'
-import image4 from '../assets/image4.jpg'
-
 
 // Assuming you have four images in your assets folder
 const imageOptions = [
@@ -13,6 +8,14 @@ const imageOptions = [
     '/src/assets/image2.jpg',
     '/src/assets/image3.jpg',
     '/src/assets/image4.jpg',
+    '/src/assets/image5.jpg',
+    '/src/assets/image6.jpg',
+    '/src/assets/image7.jpg',
+    '/src/assets/image8.jpg',
+    '/src/assets/image9.jpg',
+    '/src/assets/image10.jpg',
+    '/src/assets/image11.jpg',
+    '/src/assets/image12.jpg',
 ];
 
 const CreateBoardModal = ({ isOpen, onClose, onBoardCreated }) => {
@@ -53,6 +56,7 @@ const CreateBoardModal = ({ isOpen, onClose, onBoardCreated }) => {
                         required
                     />
                     <div className="image-options">
+                    <div className='cover-title'>Select a cover image</div>
                         {imageOptions.map((image, index) => (
                             <img
                                 key={index}
