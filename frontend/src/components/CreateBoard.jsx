@@ -1,6 +1,6 @@
 import React, {useState}from 'react'
 import axios from 'axios';
-import {image1} from '../assets/image1'
+
 
 const CreateBoard = ({ onBoardCreated }) => {
 

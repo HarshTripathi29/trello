@@ -5,6 +5,7 @@ import './Board.css';
 import CardModal from './CardModal';
 import EditIcon from '@mui/icons-material/Edit';
 import DeleteIcon from '@mui/icons-material/Delete';
+import Header from './Header';
 
 const Board = () => {
     const { boardId } = useParams();
@@ -77,18 +78,16 @@ const Board = () => {
         }
     };
 
-
     const handleDeleteCard = async (listId, cardId) => {
         try {
             await axios.delete(`http://localhost:5000/api/lists/${boardId}/lists/${listId}/cards/${cardId}`);
-            // Refresh the board data after deletion
             const res = await axios.get(`http://localhost:5000/api/boards/${boardId}`);
             setBoard(res.data);
         } catch (error) {
             console.error('Error deleting card:', error);
         }
     };
-    
+
     const handleOpenCardModal = (listId, card) => {
         setSelectedListId(listId);
         setSelectedCard(card);
@@ -98,66 +97,79 @@ const Board = () => {
     if (!board) return <div>Loading...</div>;
 
     return (
-        <div className="board-container" style={{ backgroundImage: `url(${board.cover})` }}>
-            <div>
-            <h2>{board.title}</h2>
-            <button onClick={() => setIsListModalOpen(true)} className="create-list-button">Create List</button>
-            </div>
+        <div>
+            <Header />
+    
+            <div className="board-container" style={{ backgroundImage: `url(${board.cover})` }}>
+                <div>
+                    <button onClick={() => setIsListModalOpen(true)} className="create-list-button">Create List</button>
+                </div>
+                <div className="board-lists-container">
+                    {board.lists.map((list) => (
+                        <div key={list._id} className="list-card">
+                            <div className="list-header">
+                                <h3>{list.title}</h3>
+                                <div>
+                                    <button className='icon-button' onClick={() => {
+                                        setEditListId(list._id);
+                                        setListTitle(list.title);
+                                        setIsListModalOpen(true);
+                                    }}><EditIcon /></button>
+                                    <button className='icon-button' onClick={() => handleDeleteList(list._id)}><DeleteIcon /></button>
+                                </div>
+                            </div>
+                            {list.cards.map((card) => (
+                                <div key={card._id} className="card" onClick={() => handleOpenCardModal(list._id, card)}>
+                                    
+                                    <div className='card-title'>
+                                    <p>{card.title}</p>
+                                    <button className='icon-button' onClick={(e) => {
+                                        e.stopPropagation();
+                                        handleDeleteCard(list._id, card._id);
+                                    }}><DeleteIcon /></button>
+                                    </div>
 
-            <div className='board-lists-container'>
-            {board.lists.map((list) => (
-                <div key={list._id} className="list-card">
-                <div className='list-header'>
-                    <h3>{list.title}</h3>
-                    <div>
-                    <button onClick={() => {
-                        setEditListId(list._id);
-                        setListTitle(list.title);
-                        setIsListModalOpen(true);
-                    }}><EditIcon /></button>
-                    <button onClick={() => handleDeleteList(list._id)}><DeleteIcon /></button>
-                    </div>
-                    </div>
-                    {list.cards.map((card) => (
-                        <div key={card._id} className="card" onClick={() => handleOpenCardModal(list._id, card)}>
-                            <p>{card.title}</p>
-                            <p>{card.label}</p>
-                            <button onClick={(e) => {
-                                e.stopPropagation();
-                                handleDeleteCard(list._id, card._id);
-                            }}><DeleteIcon /></button>
+                                    <div className="card-labels">
+                                        {card.labels.map((label, index) => (
+                                            <span key={index} className="card-label" style={{ backgroundColor: label.color }}>
+                                                {label.text}
+                                            </span>
+                                        ))}
+                                    </div>
+                                    
+                                </div>
+                            ))}
+                            <button className="add-card-button" onClick={() => handleOpenCardModal(list._id, null)}>Add Card</button>
                         </div>
                     ))}
-                    <button className='add-card-button' onClick={() => handleOpenCardModal(list._id, null)}>Add Card</button>
+                    {isListModalOpen && (
+                        <div className="modal-overlay">
+                            <div className="modal-content">
+                                <button className="close-button" onClick={() => setIsListModalOpen(false)}>×</button>
+                                <h2>{editListId ? 'Edit List' : 'Create New List'}</h2>
+                                <form onSubmit={editListId ? handleEditList : handleCreateList}>
+                                    <input
+                                        type="text"
+                                        placeholder="List title"
+                                        value={listTitle}
+                                        onChange={(e) => setListTitle(e.target.value)}
+                                        required
+                                    />
+                                    <button type="submit">{editListId ? 'Update List' : 'Create List'}</button>
+                                </form>
+                            </div>
+                        </div>
+                    )}
+                    {isCardModalOpen && (
+                        <CardModal
+                            isOpen={isCardModalOpen}
+                            onClose={() => setIsCardModalOpen(false)}
+                            onCreateOrUpdateCard={handleCreateOrUpdateCard}
+                            existingCard={selectedCard}
+                        />
+                    )}
                 </div>
-            ))}
-            {isListModalOpen && (
-                <div className="modal-overlay">
-                    <div className="modal-content">
-                        <button className="close-button" onClick={() => setIsListModalOpen(false)}>×</button>
-                        <h2>{editListId ? 'Edit List' : 'Create New List'}</h2>
-                        <form onSubmit={editListId ? handleEditList : handleCreateList}>
-                            <input
-                                type="text"
-                                placeholder="List title"
-                                value={listTitle}
-                                onChange={(e) => setListTitle(e.target.value)}
-                                required
-                            />
-                            <button type="submit">{editListId ? 'Update List' : 'Create List'}</button>
-                        </form>
-                    </div>
-                </div>
-            )}
-            {isCardModalOpen && (
-                <CardModal
-                    isOpen={isCardModalOpen}
-                    onClose={() => setIsCardModalOpen(false)}
-                    onCreateOrUpdateCard={handleCreateOrUpdateCard}
-                    existingCard={selectedCard}
-                />
-            )}
-        </div>
+            </div>
         </div>
     );
 };

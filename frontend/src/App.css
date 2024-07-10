@@ -1,73 +1,82 @@
-*{
-    font-family :Verdana, Geneva, Tahoma, sans-serif;
-    padding: 0;
-    margin: 0;
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap');
+
+* {
+    font-family: "Space Grotesk", sans-serif; 
+     padding: 0;
+  margin: 0;
+}
+
+body {
+  background-color: #121212;
+  color: white;
 }
 
 .app-container {
-    padding: 10px;
-    margin: 0;
+  padding: 0px;
+  margin: 0;
 }
 
 .add-board-button {
-    background-color: #007bff;
-    color: white;
-    padding: 12px 24px;
-    border: none;
-    border-radius: 8px;
-    cursor: pointer;
-    font-size: 16px;
-    margin-bottom: 16px;
-    transition: background-color 0.3s;
+  background-color: #007bff;
+  color: white;
+  padding: 12px 24px;
+  border: none;
+  border-radius: 8px;
+  cursor: pointer;
+  font-size: 1em;
+  margin-bottom: 16px;
+    font-weight: 700;
+  transition: background-color 0.3s;
 }
 
 .add-board-button:hover {
-    background-color: #0056b3;
+  background-color: #004997;
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+
 }
 
 .boards-container {
-    display: grid;
-    grid-template-columns: repeat(auto-fill, minmax(220px, 1fr));
-    gap: 16px;
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(220px, 1fr));
+  gap: 16px;
+  justify-content: center;
 }
 
 .board-card {
-    display: flex;
-    flex-direction: column;
-    background: white;
-    border-radius: 8px;
-    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
-    overflow: hidden;
-    transition: transform 0.3s;
-    cursor: pointer;
+  display: flex;
+  flex-direction: column;
+  background-color: #141414;
+  border : 1px solid #292929;
+  border-radius: 10px;
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+  overflow: hidden;
+  transition: transform 0.3s, box-shadow 0.3s;
+  cursor: pointer;
 }
 
 .board-card:hover {
-    transform: translateY(-5px);
+  /* transform: translateY(-5px); */
+  box-shadow: 0 8px 12px rgba(0, 0, 0, 0.3);
 }
 
 .board-cover {
-    width: 100%;
-    height: 150px;
-    object-fit: cover;
+  width: 93%;
+  height: 150px;
+  object-fit: cover;
+  border-radius: 10px;
+  margin: 8px;
 }
 
 .board-title {
-    padding: 16px;
-    font-size: 18px;
-    font-weight: 500;
-    color: #333;
+  padding: 16px;
+  font-size: 1.125em;
+  font-weight: 500;
+  color: white;
 }
 
-.footer {
-    border-top: 1px solid #ccc;
-    padding: 10px;
-    text-align: center;
-    background-color: #f8f9fa; /* Optional: You can set a background color */
-}
 
-.board-button-heading{
-    display: flex;
-    justify-content: space-between;
-    padding : 10px 20px;
+.board-button-heading {
+  display: flex;
+  justify-content: space-between;
+  padding: 10px 20px;
 }

@@ -1,0 +1,43 @@
+.header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 5px 20px;
+    background-color: #121212;
+    color: white;
+    border-bottom : 1px solid #424242;
+    margin-bottom: 20px;
+}
+
+.header-left h1 {
+    margin: 0;
+}
+
+.header-center {
+    display: flex;
+    justify-content: center;
+    flex-grow: 1;
+}
+
+
+.header-button{
+    width: 7vw;
+    height: 40px;
+    font-size: 0.875em;
+    padding: 10px;
+    border-radius: 5px;
+    text-align: center;
+    border : 1px solid #424242;
+    background-color: #121212;
+    color: white;
+}
+
+.board-title{
+    padding: 2px;
+    height: 40px;
+    font-size: 0.875em;
+
+text-align: center;
+border-left : 1px solid #424242;
+margin-left : 5px;
+}

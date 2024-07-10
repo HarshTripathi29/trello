@@ -5,6 +5,9 @@ import CreateBoardModal from './components/CreateBoardModal';
 import Board from './components/Board';
 import Footer from './components/Footer'
 import './App.css';
+import Home from './pages/Home';
+import Login from './pages/Login';
+import Header from './components/Header';
 
 const App = () => {
     const [boards, setBoards] = useState([]);
@@ -38,6 +41,7 @@ const App = () => {
                         path="/" 
                         element={
                             <>
+                            <Header/>
                                 <div className='board-button-heading'>
                                 <h3>All Boards</h3>
                                 <button onClick={openModal} className="add-board-button">Add Board</button>
@@ -55,6 +59,11 @@ const App = () => {
                         } 
                     />
                     <Route path="/board/:boardId" element={<Board />} />
+                    <Route path="/home" element={<Home />} />
+                    <Route path="/login" element={<Login />} />
+
+
+
                 </Routes>
             </div>
             <Footer/>

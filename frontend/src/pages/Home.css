@@ -1,0 +1,240 @@
+.landing-page {
+  background-color: #080808;
+  width: 100vw;
+  padding: 0px;
+  margin: 0px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  color: white; /* Changed the font color to white */
+}
+
+.header{
+  background-color: #080808;
+  display: flex;
+  width : 100%;
+  flex-direction: row;
+  justify-content: space-between;
+  padding : 10px 5px;
+}
+
+.login-btn{
+  background-color: #007bff;
+  color: white;
+  padding: 10px;
+  border: none;
+  border-radius: 8px;
+  cursor: pointer;
+  font-size: 1em;
+  font-weight: 700;
+  margin-left:5px;
+  transition: background-color 0.3s;
+}
+
+.login-btn:hover {
+  background-color: #004997;
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+}
+.landing-header {
+  color: white; /* Changed the font color to white */
+  margin: 5px;
+}
+
+.intro {
+  font-size: 2.75em;
+  font-weight: bold;
+  padding: 5px 70px;
+  text-align: center;
+  text-shadow: 2px 4px rgba(0, 0, 0, 0.1);
+}
+
+.steps {
+  margin: 25px;
+  display: flex;
+  flex-direction: column;
+  background-color: #121212; /* Changed the section background color */
+  padding: 50px 100px;
+  border: 1px solid rgba(44, 44, 44, 0.146);
+  border-radius: 25px;
+  text-align: center;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.5); /* Added box shadow */
+}
+
+.steps h2 {
+  margin-bottom: 10px;
+  font-size: 2.5em;
+  font-weight: bold;
+  color: white; /* Changed the font color to white */
+}
+
+.steps ol {
+  display: flex;
+  flex-direction: row;
+  flex-wrap: wrap;
+  padding: 50px 0px;
+}
+
+.steps ol li {
+  list-style: none;
+  background-color: #121212; /* Changed the box background color */
+  margin: 5px;
+  border: 1px solid white; /* Changed the border color */
+  border-radius: 8px;
+  height: 20vh;
+  width: 15vw;
+  padding: 10px;
+  color: white; /* Changed the font color to white */
+  text-align: center;
+  opacity: 80%;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.5); /* Added box shadow */
+}
+
+.home-image {
+  margin: 10px;
+  height : 50vh;
+}
+
+.landingBtn {
+  background-color: #121212; /* Changed the button background color */
+  color: white; /* Changed the font color to white */
+  border: none;
+  width: 150px;
+  height: 40px;
+  font-size: 1em;
+  font-weight: 600;
+  padding: 15px;
+  border-radius: 8px;
+  text-align: center;
+  cursor: pointer;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.5); /* Added box shadow */
+}
+
+.landingBtn:hover {
+  background-color: #353535;
+}
+
+.description {
+  font-size: 1em;
+  font-weight: 500;
+  padding: 10px 250px;
+  text-align: center;
+  opacity: 80%;
+  margin-bottom: 50px;
+}
+
+.intro2 {
+  padding: 20px;
+  margin: 20px;
+  font-size: 1.75em;
+  font-weight: 600;
+  text-align: center;
+}
+
+/* Media Queries for Mobile Screens */
+@media screen and (max-width: 768px) {
+  .landing-page {
+    padding: 10px;
+  }
+
+  .steps {
+    padding: 10px;
+    margin: 10px 5px;
+    border-radius: 0;
+    color: white; /* Changed the font color to white */
+    flex-direction: column;
+  }
+
+  .steps h2 {
+    font-size: 1.75em;
+  }
+
+  .steps ol {
+    padding: 10px;
+    flex-direction: column;
+  }
+
+  .steps ol li {
+    padding: 5px;
+    width: 80vw;
+    height: auto;
+  }
+
+  .description {
+    font-size: 1em;
+    padding: 10px;
+    margin: 10px;
+    margin-bottom: 30px;
+  }
+
+  .intro2 {
+    font-size: 1.25em;
+    margin: 10px;
+    padding: 10px 20px;
+  }
+
+  .landingBtn {
+    width: 90vw;
+    height: 40px;
+    font-size: 0.875em;
+    padding: 10px;
+    border-radius: 0;
+    text-align: center;
+    background-color: #121212; /* Changed the button background color */
+    color: white; /* Changed the font color to white */
+  }
+}
+
+/* Media Queries for Mobile Screens (375px) */
+@media screen and (max-width: 375px) {
+  .landing-page {
+    padding: 10px;
+  }
+
+  .steps {
+    padding: 10px;
+    margin: 10px 5px;
+    border-radius: 0;
+    color: white; /* Changed the font color to white */
+    flex-direction: column;
+  }
+
+  .steps h2 {
+    font-size: 1.75em;
+  }
+
+  .steps ol {
+    padding: 10px;
+    flex-direction: column;
+  }
+
+  .steps ol li {
+    padding: 5px;
+    width: 80vw;
+    height: auto;
+  }
+
+  .description {
+    font-size: 1em;
+    padding: 10px;
+    margin: 10px;
+    margin-bottom: 30px;
+  }
+
+  .intro2 {
+    font-size: 1.25em;
+    margin: 10px;
+    padding: 10px 20px;
+  }
+
+  .landingBtn {
+    width: 90vw;
+    height: 40px;
+    font-size: 0.875em;
+    padding: 10px;
+    border-radius: 0;
+    text-align: center;
+    background-color: #121212; /* Changed the button background color */
+    color: white; /* Changed the font color to white */
+  }
+}

@@ -1,9 +1,10 @@
 import React, { useState, useEffect } from 'react';
+import CloseIcon from '@mui/icons-material/Close';
 import './CardModal.css';
 
 const colors = ['#f28b82', '#fbbc04', '#34a853', '#4285f4'];
 
-const CardModal = ({ isOpen, onClose, onCreateOrUpdateCard,  existingCard }) => {
+const CardModal = ({ isOpen, onClose, onCreateOrUpdateCard, existingCard }) => {
     const [cardTitle, setCardTitle] = useState('');
     const [cardDescription, setCardDescription] = useState('');
     const [labels, setLabels] = useState([]);
@@ -64,12 +65,25 @@ const CardModal = ({ isOpen, onClose, onCreateOrUpdateCard,  existingCard }) => 
                                 value={labelText}
                                 onChange={(e) => setLabelText(e.target.value)}
                             />
-                            <select value={selectedColor} onChange={(e) => setSelectedColor(e.target.value)}>
+                            <div className='select-container'>
+                            <select
+                                value={selectedColor}
+                                onChange={(e) => setSelectedColor(e.target.value)}
+                                style={{ backgroundColor: selectedColor }}
+                            >
                                 {colors.map((color, index) => (
-                                    <option key={index} value={color}>{color}</option>
+                                    <option
+                                        key={index}
+                                        value={color}
+                                        style={{ backgroundColor: color, color: 'white' }}
+                                    >
+                                        {color}
+                                    </option>
                                 ))}
                             </select>
-                            <button type="button" onClick={handleAddLabel}>Add Label</button>
+                            
+                            <button type="button" className='select-button' onClick={handleAddLabel}>Add Label</button>
+                            </div>
                         </div>
                         <div className="labels-list">
                             {labels.map((label, index) => (
@@ -79,13 +93,11 @@ const CardModal = ({ isOpen, onClose, onCreateOrUpdateCard,  existingCard }) => 
                                     style={{ backgroundColor: label.color }}
                                 >
                                     {label.text}
-                                    <button
-                                        type="button"
+                                    <CloseIcon
                                         className="remove-button"
                                         onClick={() => handleRemoveLabel(index)}
-                                    >
-                                        ×
-                                    </button>
+                                        style={{ cursor: 'pointer' }}
+                                    />
                                 </div>
                             ))}
                         </div>
