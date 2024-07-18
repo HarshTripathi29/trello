@@ -3,14 +3,17 @@ import axios from 'axios';
 import { BrowserRouter as Router, Route, Routes, Link } from 'react-router-dom';
 import CreateBoardModal from './components/CreateBoardModal';
 import Board from './components/Board';
-import Footer from './components/Footer'
+import Footer from './components/Footer';
 import './App.css';
 import Home from './pages/Home';
 import Login from './pages/Login';
 import Header from './components/Header';
 import { useDispatch } from 'react-redux';
 import { checkLogin } from './features/auth/authSlice';
-
+import DeleteIcon from '@mui/icons-material/Delete';
+import Button from '@mui/material/Button';
+import LockOpenIcon from '@mui/icons-material/LockOpen';
+import ArrowForwardIcon from '@mui/icons-material/ArrowForward';
 
 const App = () => {
     const [boards, setBoards] = useState([]);
@@ -18,10 +21,9 @@ const App = () => {
 
     const dispatch = useDispatch();
 
-  useEffect(() => {
-    dispatch(checkLogin());
-  }, [dispatch]);
-
+    useEffect(() => {
+        dispatch(checkLogin());
+    }, [dispatch]);
 
     useEffect(() => {
         const fetchBoards = async () => {
@@ -40,6 +42,15 @@ const App = () => {
         setBoards([...boards, newBoard]);
     };
 
+    const handleDeleteBoard = async (boardId) => {
+        try {
+            await axios.delete(`http://localhost:5000/api/boards/${boardId}`);
+            setBoards(boards.filter(board => board._id !== boardId));
+        } catch (error) {
+            console.error('Error deleting board:', error);
+        }
+    };
+
     const openModal = () => setIsModalOpen(true);
     const closeModal = () => setIsModalOpen(false);
 
@@ -47,37 +58,47 @@ const App = () => {
         <Router>
             <div className="app-container">
                 <Routes>
-                <Route path="/" element={<Home />} />
+                    <Route path="/" element={<Home />} />
 
                     <Route 
                         path="/dashboard" 
                         element={
                             <>
-                            <Header/>
+                                <Header />
                                 <div className='board-button-heading'>
-                                <h3>All Boards</h3>
-                                <button onClick={openModal} className="add-board-button">Add Board</button>
+                                    <h3>All Boards</h3>
+                                    <button onClick={openModal} className="add-board-button">Add Board</button>
                                 </div>
                                 <CreateBoardModal isOpen={isModalOpen} onClose={closeModal} onBoardCreated={handleBoardCreated} />
                                 <div className="boards-container">
                                     {boards.map((board) => (
-                                        <Link to={`/board/${board._id}`} key={board._id} className="board-card">
+                                        <div key={board._id} className="board-card">
                                             {board.cover && <img src={board.cover} alt={board.title} className="board-cover" />}
-                                            <div className="board-title">{board.title}</div>
-                                        </Link>
+                                            <div className='title-icon'>
+                                                <div className="board-title">{board.title}</div>
+                                                <DeleteIcon onClick={() => handleDeleteBoard(board._id)} className="delete-board-icon" />
+                                            </div>
+                                            <Button
+                                                component={Link}
+                                                to={`/board/${board._id}`}
+                                                
+                                                startIcon={<ArrowForwardIcon />}
+                                                className="view-board-button"
+                                                
+                                            >
+                                                View Board
+                                            </Button>
+                                        </div>
                                     ))}
                                 </div>
                             </>
                         } 
                     />
-                    <Route path="/board/:boardId" element={<Board />} />
+                    <Route path="/board/:boardId" element={<Board onDeleteBoard={handleDeleteBoard} />} />
                     <Route path="/login" element={<Login />} />
-
-
-
                 </Routes>
             </div>
-            <Footer/>
+            <Footer />
         </Router>
     );
 };

@@ -81,3 +81,18 @@ body {
   justify-content: space-between;
   padding: 10px 20px;
 }
+
+.title-icon{
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  
+}
+
+.delete-board-icon{
+  margin : 15px;
+}
+
+.view-board-button{
+  
+}
