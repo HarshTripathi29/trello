@@ -1,6 +1,6 @@
 .landing-page {
   background-color: #080808;
-  width: 100vw;
+  width: calc(100vw-40px);
   padding: 0px;
   margin: 0px;
   display: flex;
@@ -10,14 +10,7 @@
   color: white; /* Changed the font color to white */
 }
 
-.header{
-  background-color: #080808;
-  display: flex;
-  width : 100%;
-  flex-direction: row;
-  justify-content: space-between;
-  padding : 10px 5px;
-}
+
 
 .login-btn{
   background-color: #007bff;
@@ -30,6 +23,7 @@
   font-weight: 700;
   margin-left:5px;
   transition: background-color 0.3s;
+  cursor : pointer;
 }
 
 .login-btn:hover {
@@ -44,13 +38,13 @@
 .intro {
   font-size: 2.75em;
   font-weight: bold;
-  padding: 5px 70px;
+  padding: 5px 0px;
   text-align: center;
   text-shadow: 2px 4px rgba(0, 0, 0, 0.1);
 }
 
 .steps {
-  margin: 25px;
+  margin: 25px 0px;
   display: flex;
   flex-direction: column;
   background-color: #121212; /* Changed the section background color */
@@ -91,7 +85,7 @@
 }
 
 .home-image {
-  margin: 10px;
+  margin: 10px 0px;
   height : 50vh;
 }
 

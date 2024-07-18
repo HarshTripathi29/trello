@@ -8,10 +8,20 @@ import './App.css';
 import Home from './pages/Home';
 import Login from './pages/Login';
 import Header from './components/Header';
+import { useDispatch } from 'react-redux';
+import { checkLogin } from './features/auth/authSlice';
+
 
 const App = () => {
     const [boards, setBoards] = useState([]);
     const [isModalOpen, setIsModalOpen] = useState(false);
+
+    const dispatch = useDispatch();
+
+  useEffect(() => {
+    dispatch(checkLogin());
+  }, [dispatch]);
+
 
     useEffect(() => {
         const fetchBoards = async () => {
@@ -37,8 +47,10 @@ const App = () => {
         <Router>
             <div className="app-container">
                 <Routes>
+                <Route path="/" element={<Home />} />
+
                     <Route 
-                        path="/" 
+                        path="/dashboard" 
                         element={
                             <>
                             <Header/>
@@ -59,7 +71,6 @@ const App = () => {
                         } 
                     />
                     <Route path="/board/:boardId" element={<Board />} />
-                    <Route path="/home" element={<Home />} />
                     <Route path="/login" element={<Login />} />
 
 

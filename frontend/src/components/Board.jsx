@@ -1,3 +1,4 @@
+// Board.js
 import React, { useState, useEffect } from 'react';
 import axios from 'axios';
 import { useParams } from 'react-router-dom';
@@ -98,7 +99,7 @@ const Board = () => {
 
     return (
         <div>
-            <Header />
+            <Header boardTitle={board.title} />
     
             <div className="board-container" style={{ backgroundImage: `url(${board.cover})` }}>
                 <div>

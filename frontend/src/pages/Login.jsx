@@ -22,7 +22,7 @@ const Login = () => {
       const data = isSignInForm ? { email, password } : { name, email, password };
       const response = await axios.post(`http://localhost:5000/api/auth${endpoint}`, data);
       localStorage.setItem('token', response.data.token);
-      navigate('/');
+      navigate('/dashboard');
     } catch (error) {
       setErrorMessage(error.response.data.message || 'Something went wrong');
     }
